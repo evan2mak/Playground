@@ -36,5 +36,61 @@ The following functions/extensions are implemented:
 
 ## SensorActivity
 
+Manages sensor data and location updates.
 
+onCreate:
+
+Initializes the activity, checks permissions, and sets up sensors and location fetching.
+
+fetchLocation:
+
+Fetches the current location and updates the UI.
+
+updateLocationInfo: 
+
+Updates location information using geocoding.
+
+onSensorChanged: 
+
+Handles sensor data changes and updates the UI.
+
+onDestroy: 
+
+Unregisters the sensor listener when the activity is destroyed.
+
+SensorScreen: 
+
+Composable function to display sensor data and location information.
+
+## SensorViewModel
+
+Manages and exposes sensor data (temperature and pressure) for the UI.
+
+updateTemperature: 
+
+Updates the temperature LiveData.
+
+updatePressure: 
+
+Updates the pressure LiveData.
+
+## GestureActivity
+
+Manages interactive gestures and provides a playground for gesture-based interactions.
+
+onCreate:
+
+Sets up the gesture handling UI and initializes the ball movement logic.
+
+## LocationViewModel
+
+Manages and exposes location-related data (city and state names).
+
+updateCityName: 
+
+Updates the current city name in the flow.
+
+updateStateName: 
+
+Updates the current state name in the flow.
 
