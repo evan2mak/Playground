@@ -37,6 +37,7 @@ fun Double.toDegrees(): Double {
     return this * 180 / Math.PI
 }
 
+// GestureActivity: Manages interactive gestures and provides a playground for gesture-based interactions.
 class GestureActivity : ComponentActivity() {
 
     private lateinit var ballImageView: ImageView
@@ -47,6 +48,7 @@ class GestureActivity : ComponentActivity() {
     private var isDragging = false
     private var lastTapTime: Long = 0
 
+    // onCreate: Sets up the gesture handling UI and initializes the ball movement logic.
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +59,6 @@ class GestureActivity : ComponentActivity() {
 
             val configuration = LocalConfiguration.current
 
-            // Determine the appropriate orientation based on the device orientation
             val isVertical = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
             val density = LocalDensity.current.density
@@ -75,14 +76,12 @@ class GestureActivity : ComponentActivity() {
                             .pointerInput(Unit) {
                                 detectTransformGestures { _, pan, _, _ ->
                                     if (!isDragging) {
-                                        // Initialize the initialTouchOffset on the first drag
                                         isDragging = true
                                     }
 
-                                    // Calculate the new position based on the drag
                                     ballMatrix.reset()
 
-                                    // Adjust the sensitivity by multiplying with a scaling factor
+                                    // Adjust the sensitivity
                                     val sensitivity = .25f // You can adjust this value
                                     val adjustedPan = Offset(
                                         pan.x * sensitivity,
@@ -101,7 +100,6 @@ class GestureActivity : ComponentActivity() {
                                         constrainedY
                                     )
 
-                                    // Calculate the angle of the drag gesture
                                     val angle =
                                         Math.atan2(pan.y.toDouble(), pan.x.toDouble()).toDegrees()
 
@@ -121,16 +119,13 @@ class GestureActivity : ComponentActivity() {
                                     Log.d("GestureActivity", "Pan offset: $pan")
                                     Log.d("GestureActivity", "Direction: $direction")
 
-                                    // Add the log entry based on the direction
                                     if (direction.isNotEmpty() && isDragging) {
                                         gestureLog =
                                             gestureLog + "You moved the ball to the $direction."
                                         Log.d("GestureActivity", "Gesture Log Updated: $gestureLog")
                                     }
 
-                                    // Update the ball position on the ImageView
                                     ballImageView.imageMatrix = ballMatrix
-                                    // Update the ball position in the state
                                     ballPosition.value = PointF(
                                         constrainedX,
                                         constrainedY
@@ -161,13 +156,12 @@ class GestureActivity : ComponentActivity() {
                             false
                         }
 
-                        // Place the ImageView inside the Box
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "Gesture playground",
+                                text = "Gesture Playground",
                                 color = ComposeColor.Black,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
@@ -177,7 +171,6 @@ class GestureActivity : ComponentActivity() {
                                 factory = { ballImageView },
                                 modifier = Modifier.fillMaxSize()
                             ) {
-                                // Draw the ball on the Canvas
                                 ballCanvas.drawColor(Color.TRANSPARENT, android.graphics.PorterDuff.Mode.CLEAR)
                                 ballCanvas.drawCircle(
                                     ballPosition.value.x,
@@ -196,7 +189,6 @@ class GestureActivity : ComponentActivity() {
                             .fillMaxWidth()
                             .background(ComposeColor.Gray)
                     ) {
-                        // Log of gestures goes here
                         gestureLog.reversed().forEach { logEntry ->
                             Log.d("GestureActivity", "Displaying Log Entry: $logEntry")
                             Text(
@@ -219,14 +211,11 @@ class GestureActivity : ComponentActivity() {
                             .pointerInput(Unit) {
                                 detectTransformGestures { _, pan, _, _ ->
                                     if (!isDragging) {
-                                        // Initialize the initialTouchOffset on the first drag
                                         isDragging = true
                                     }
 
-                                    // Calculate the new position based on the drag
                                     ballMatrix.reset()
 
-                                    // Adjust the sensitivity by multiplying with a scaling factor
                                     val sensitivity = .25f // You can adjust this value
                                     val adjustedPan = Offset(
                                         pan.x * sensitivity,
@@ -236,7 +225,6 @@ class GestureActivity : ComponentActivity() {
                                     val newX = ballPosition.value.x + adjustedPan.x
                                     val newY = ballPosition.value.y + adjustedPan.y
 
-                                    // Constrain the ball within the screen boundaries
                                     val constrainedX = newX.coerceIn(0f, screenWidth)
                                     val constrainedY = newY.coerceIn(0f, screenHeight)
 
@@ -245,11 +233,9 @@ class GestureActivity : ComponentActivity() {
                                         constrainedY
                                     )
 
-                                    // Calculate the angle of the drag gesture
                                     val angle =
                                         Math.atan2(pan.y.toDouble(), pan.x.toDouble()).toDegrees()
 
-                                    // Determine the direction based on the angle
                                     val direction = when {
                                         angle >= -22.5 && angle < 22.5 -> "right"
                                         angle >= 22.5 && angle < 67.5 -> "bottom-right"
@@ -265,16 +251,13 @@ class GestureActivity : ComponentActivity() {
                                     Log.d("GestureActivity", "Pan offset: $pan")
                                     Log.d("GestureActivity", "Direction: $direction")
 
-                                    // Add the log entry based on the direction
                                     if (direction.isNotEmpty() && isDragging) {
                                         gestureLog =
                                             gestureLog + "You moved the ball to the $direction."
                                         Log.d("GestureActivity", "Gesture Log Updated: $gestureLog")
                                     }
 
-                                    // Update the ball position on the ImageView
                                     ballImageView.imageMatrix = ballMatrix
-                                    // Update the ball position in the state
                                     ballPosition.value = PointF(
                                         constrainedX,
                                         constrainedY
@@ -305,13 +288,12 @@ class GestureActivity : ComponentActivity() {
                             false
                         }
 
-                        // Place the ImageView inside the Box
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "Gesture playground",
+                                text = "Gesture Playground",
                                 color = ComposeColor.Black,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
@@ -321,7 +303,6 @@ class GestureActivity : ComponentActivity() {
                                 factory = { ballImageView },
                                 modifier = Modifier.fillMaxSize()
                             ) {
-                                // Draw the ball on the Canvas
                                 ballCanvas.drawColor(Color.TRANSPARENT, android.graphics.PorterDuff.Mode.CLEAR)
                                 ballCanvas.drawCircle(
                                     ballPosition.value.x,
@@ -341,7 +322,6 @@ class GestureActivity : ComponentActivity() {
                             .fillMaxWidth()
                             .background(ComposeColor.Gray)
                     ) {
-                        // Log of gestures goes here
                         gestureLog.reversed().forEach { logEntry ->
                             Log.d("GestureActivity", "Displaying Log Entry: $logEntry")
                             Text(

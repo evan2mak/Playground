@@ -31,12 +31,14 @@ import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
 import java.util.*
 
+// SensorActivity: Manages sensor data and location updates
 class SensorActivity : ComponentActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
     private val sensorViewModel by viewModels<SensorViewModel>()
     private val locationViewModel by viewModels<LocationViewModel>()
 
+    // onCreate: Initializes the activity, checks permissions, and sets up sensors and location fetching.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -68,6 +70,7 @@ class SensorActivity : ComponentActivity(), SensorEventListener {
         }
     }
 
+    // fetchLocation: Fetches the current location and updates the UI.
     private fun fetchLocation() {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val locationProvider = LocationManager.NETWORK_PROVIDER
@@ -91,33 +94,32 @@ class SensorActivity : ComponentActivity(), SensorEventListener {
                         0f,
                         object : LocationListener {
                             override fun onLocationChanged(newLocation: Location) {
-                                // Once a new location is received, update the location info and stop listening for updates
                                 updateLocationInfo(newLocation)
                                 locationManager.removeUpdates(this)
                             }
 
-                            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-                                // Handle status changes if needed
+                            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) { // Handle status changes if needed
                             }
 
                             override fun onProviderEnabled(provider: String) {
-                                // Handle provider enabled if needed
                             }
 
                             override fun onProviderDisabled(provider: String) {
-                                // Handle provider disabled if needed
                             }
                         }
                     )
                 }
-            } else {
+            }
+            else {
                 Log.e("SensorActivity", "Network provider is not enabled")
             }
-        } else {
+        }
+        else {
             Log.e("SensorActivity", "Location permissions not granted")
         }
     }
 
+    // updateLocationInfo: Updates location information using geocoding.
     private fun updateLocationInfo(location: Location) {
         val geocoder = Geocoder(this, Locale.getDefault())
         try {
@@ -142,7 +144,7 @@ class SensorActivity : ComponentActivity(), SensorEventListener {
 
 
 
-
+    // onSensorChanged: Handles sensor data changes and updates the UI.
     override fun onSensorChanged(event: SensorEvent) {
         when (event.sensor.type) {
             Sensor.TYPE_AMBIENT_TEMPERATURE -> {
@@ -155,15 +157,16 @@ class SensorActivity : ComponentActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
-        // Not needed for this implementation
     }
 
+    // onDestroy: Unregisters the sensor listener when the activity is destroyed.
     override fun onDestroy() {
         super.onDestroy()
         sensorManager.unregisterListener(this)
     }
 }
 
+// SensorScreen: Composable function to display sensor data and location information.
 @Composable
 fun SensorScreen(sensorViewModel: SensorViewModel, activity: Activity, locationViewModel: LocationViewModel) {
     val temperature by sensorViewModel.temperature.observeAsState(initial = 0f)
