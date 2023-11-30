@@ -1,4 +1,4 @@
-# C323 Project 10 - Gestures Playground App: Evan Tomak
+# C323 Project 10 - Gesture Playground App: Evan Tomak
 
 This project is an app that has two screens, a sensor screen and a gestures screen. The sensor screen shows the user the name of the developer (me), their location (city and state), and sensor data (temperature and air pressure). 
 
