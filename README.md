@@ -102,6 +102,7 @@ Sensor Screen: This clip shows the sensor screen. It shows the default location 
 ![My Video-3](https://github.com/evan2mak/Playground/assets/128643914/f8716867-8f7a-4a87-9b97-056313a17846)
 
 Gesture Screen: This clip shows how the gesture screen works. It shows the ball getting dragged with the corresponding logs. Shows both orientations as well and the log of a double tap.
+![My Video-4](https://github.com/evan2mak/Playground/assets/128643914/43bab573-d886-4549-8c2e-428917259ca4)
 
 
 ## Notes
