@@ -2,7 +2,7 @@
 
 This project is an app that has two screens, a sensor screen and a gestures screen. The sensor screen shows the user the name of the developer (me), their location (city and state), and sensor data (temperature and air pressure). 
 
-Note: this sensor is for an emulator, so the city and location being fetched show up as the headquarters of Google by default for the emulator, which is Mountain View, California.
+Note: this sensor is for an emulator, so the city and location being fetched show up as the headquarters of Google by default for the emulator, which is Mountain View, California. I could not get the location to change in the extended controls, so in the video below the location is showing as Mountain View, California. 
 
 The temperature also may be 0.0 degrees Celsius by default. It will fetch the correct temperature if you change the value in the extended controls menu. 
 
