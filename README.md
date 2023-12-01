@@ -109,6 +109,10 @@ Gesture Screen: This clip shows how the gesture screen works. It shows the ball 
 
 The hardest part of this project was figuring out how to drag the ball. I had to do this sensitivity workaround because I couldn't get the drag quite right, but works for the most part. The logs were also pretty annoying with the angle of the drag. Otherwise not too bad!
 
+## Google Play Portion
+
+I am not going to pay $25 for this developer account for one project grade. This is kind of ridiculous, respectfully. This was not in the class syllabus for a charge. 
+
 ## License
 
     Copyright 2023 Evan Tomak.
