@@ -82,7 +82,7 @@ class GestureActivity : ComponentActivity() {
                                     ballMatrix.reset()
 
                                     // Adjust the sensitivity
-                                    val sensitivity = .25f // You can adjust this value
+                                    val sensitivity = .20f // You can adjust this value
                                     val adjustedPan = Offset(
                                         pan.x * sensitivity,
                                         pan.y * sensitivity
@@ -216,7 +216,7 @@ class GestureActivity : ComponentActivity() {
 
                                     ballMatrix.reset()
 
-                                    val sensitivity = .25f // You can adjust this value
+                                    val sensitivity = .20f // You can adjust this value
                                     val adjustedPan = Offset(
                                         pan.x * sensitivity,
                                         pan.y * sensitivity
