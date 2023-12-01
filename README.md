@@ -98,6 +98,12 @@ Updates the current state name in the flow.
 
 Here's a walkthrough of implemented user stories:
 
+Sensor Screen: This clip shows the sensor screen. It shows the default location of the emulator (Google's headquarters - Mountain View, California), the temperature, and the air pressure. 
+![My Video-3](https://github.com/evan2mak/Playground/assets/128643914/f8716867-8f7a-4a87-9b97-056313a17846)
+
+Gesture Screen: This clip shows how the gesture screen works. It shows the ball getting dragged with the corresponding logs. Shows both orientations as well and the log of a double tap.
+
+
 ## Notes
 
 The hardest part of this project was figuring out how to drag the ball. I had to do this sensitivity workaround because I couldn't get the drag quite right, but works for the most part. The logs were also pretty annoying with the angle of the drag. Otherwise not too bad!
